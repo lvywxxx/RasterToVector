@@ -5,17 +5,7 @@ import os
 class TransFunc:
     def __init__(self):
         print("_init_TransFunc")
-
-        #/************************************************************************/
-        #/*                              AddEdges()                              */
-        #/*                                                                      */
-        #/*      Examine one pixel and compare to its neighbour above            */
-        #/*      (previous) and right.  If they are different polygon ids        */
-        #/*      then add the pixel edge to this polygon and the one on the      */
-        #/*      other side of the edge.                                         */
-        #/************************************************************************/
-
-    # 这个函数逻辑上没问题
+        
     def AddEdges(self,panThisLineId,panLastLineId,panPolyIdMap,panPolyValue,papoPoly,iX,iY):
         nThisId = panThisLineId[iX];
         if( nThisId != -1 ):
@@ -30,11 +20,9 @@ class TransFunc:
         if( nLeftId != -1 ):
             nLeftId = panPolyIdMap[nLeftId]
 
-        # 这里就映射到计算机坐标了,从0开始
         iXReal = iX - 1;
 
         if( nThisId != nPreviousId ):
-            #上下不同，添加水平线
             if( nThisId != -1 ):
                 if( papoPoly[nThisId].dfPolyValue == -1 ):
                     papoPoly[nThisId] = RPolygon.RPolygon( panPolyValue[nThisId] )
@@ -58,8 +46,10 @@ class TransFunc:
 
     def Clockwise(self,polyXY):
         print(1)
+        # 施工中
 
     def AutoClockwise(self,aanXY):
+        # 施工中
         if len(aanXY)==1:
             oVec=[aanXY[0][2]-aanXY[0][0],aanXY[0][3]-aanXY[0][1]]
             iVec=[aanXY[0][len(aanXY[0])-4]-aanXY[0][0],aanXY[0][len(aanXY[0])-3]-aanXY[0][1]]
