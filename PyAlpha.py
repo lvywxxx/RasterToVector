@@ -20,9 +20,7 @@ def main():
     ySize=np.size(img,0)
     print("ySize",ySize,"xSize",xSize)
     # bandNum=np.size(img,2)
-    # os.system("pause")
     img.tolist()
-    # print(len(img[0][0]))
 
     # [-1 band_data -1] 对齐
     panThisLineVal=[-1 for row in range(0,xSize+2)]
@@ -77,48 +75,17 @@ def main():
         panLastLineVal=copy.deepcopy(panThisLineVal)
         panLastLineId=copy.deepcopy(panThisLineId)
         print("second pass:",iY)
-
-    """
-    for iX in range(0,secondEnum.nNextPolygonId):
-        if (papoPoly[iX].dfPolyValue!=-1):
-            papoPoly[iX].Colesce()
-            # ADEG.Clockwise(papoPoly[iX].aanXY)
-            print("papoPoly:",iX)
-            for iy in range(0,len(papoPoly[iX].aanXY)):
-                print(papoPoly[iX].aanXY[iy][0]==papoPoly[iX].aanXY[iy][len(papoPoly[iX].aanXY[iy])-2] and papoPoly[iX].aanXY[iy][1]==papoPoly[iX].aanXY[iy][len(papoPoly[iX].aanXY[iy])-1])
-                print("len(papoPoly[iX].aanXY)",len(papoPoly[iX].aanXY))
-        if iX==26:
-            papoPoly[iX].Trans()
-            print(papoPoly[iX].polyXY)#[iy])
-        if iX==43:
-            papoPoly[iX].Trans()
-            print(papoPoly[iX].polyXY)#[iy])
-        if iX==92:
-            papoPoly[iX].Trans()
-            print(papoPoly[iX].polyXY)#[iy])
-        if iX==101:
-            papoPoly[iX].Trans()
-            print(papoPoly[iX].polyXY)#[iy])
-    """
-    os.system("pause")
     
     shp_w=shp.Writer("G:/11_complete")
     field_std="polys"
     shp_w.field(field_std,"C")
     
-    # os.system("pause")
     for iX in range(0,secondEnum.nNextPolygonId):
         print("papoPoly[iX].dfPolyValue",papoPoly[iX].dfPolyValue)
         if (papoPoly[iX].dfPolyValue!=-1):
-            # print("!",papoPoly[iX].aanXY))
             papoPoly[iX].Colesce()
             # ADEG.Clockwise(papoPoly[iX].aanXY)
             papoPoly[iX].Trans()
-            # print("poly_",iX,"::len(papoPoly[iX].polyXY)::",len(papoPoly[iX].polyXY))
-            # print("papoPoly[iX].aanXY",papoPoly[iX].aanXY)
-            # print("papoPoly[iX].polyXY",papoPoly[iX].polyXY)
-            # os.system("pause")
-            # shp_w.field(field_std+str(iX),"C")
             shp_w.poly(papoPoly[iX].polyXY)
             shp_w.record("polygon_"+str(iX))
             
