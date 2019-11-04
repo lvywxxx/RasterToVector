@@ -15,9 +15,6 @@ class RPolygon:
     def AddSegment(self,x1,y1,x2,y2):
         # print("add segment")
         self.nLastLineUpdated = max(y1, y2);
-        #/* -------------------------------------------------------------------- */
-        #/*      Is there an existing string ending with this?                   */
-        #/* -------------------------------------------------------------------- */
 
         for iString in range(0,len(self.aanXY)):
             anString = copy.deepcopy(self.aanXY[iString])
@@ -98,59 +95,6 @@ class RPolygon:
                 print( "    (%d,%d)\n", anString[iVert], anString[iVert+1] )
 
     def Colesce(self):
-        """
-        # print("colesce")
-        #/* -------------------------------------------------------------------- */
-        #/*      Iterate over loops starting from the first, trying to merge     */
-        #/*      other segments into them.                                       */
-        #/* -------------------------------------------------------------------- */    
-        # for iBaseString in range(0,len(self.aanXY)):
-
-        for iBaseString in range(0,len(self.aanXY)):
-            endflag=True
-            
-            # print("|| colesce main it:",itr)
-            # print("len(self.aanXY)",len(self.aanXY))
-            #这里不需要判别iBaseString==1的情况，len.aanxy==1，那么下面for循环就会return
-            if iBaseString>=len(self.aanXY):
-                return
-
-            while (endflag):
-                anBase = copy.deepcopy(self.aanXY[iBaseString])
-                bMergeHappened = True     
-            #/* -------------------------------------------------------------------- */
-            #/*      Keep trying to merge the following strings into our target      */
-            #/*      "base" string till we have tried them all once without any      */
-            #/*      mergers.                                                        */
-            #/* -------------------------------------------------------------------- */
-                while( bMergeHappened ):
-                    bMergeHappened = False;
-            #/* -------------------------------------------------------------------- */
-            #/*      Loop over the following strings, trying to find one we can      */
-            #/*      merge onto the end of our base string.                          */
-            #/* -------------------------------------------------------------------- */
-                    for iString in range(iBaseString+1,len(self.aanXY)):
-                        if iString>=len(self.aanXY):
-                            break
-
-                        anString = self.aanXY[iString]
-                        # print("anBase",anBase)
-                        # print("anString",anString)
-                        if( anBase[len(anBase)-2]==anString[0] and anBase[len(anBase)-1]==anString[1] ):
-                            # print("enter 1")
-                            self.Merge(iBaseString,iString,1)
-                            bMergeHappened = True
-                        else :
-                            if( anBase[len(anBase)-2]==anString[len(anString)-2] and anBase[len(anBase)-1]==anString[len(anString)-1] ):
-                                # print("enter -1")
-                                self.Merge( iBaseString,iString,-1)
-                                bMergeHappened = True
-
-                # 每次大循环完毕，检查首尾是否已经衔接，如果已经衔接，一个多边形已经封闭
-                if(anBase[0]==anBase[len(anBase)-2] and anBase[1]==anBase[len(anBase)-1]):
-                    endflag=False
-        """
-        
         for iBaseString in range(0,len(self.aanXY)):
             if iBaseString>=len(self.aanXY):
                 return
